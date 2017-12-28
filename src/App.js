@@ -1,18 +1,23 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { BrowserRouter,Route,Switch } from 'react-router-dom'
 import './App.css';
+import {HomePageComponent} from './pages/home/home'
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    console.log('App Component',this.props);
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <BrowserRouter>
+          <Switch>
+            <Route path="/" render={()=>{return <HomePageComponent {...this.props}/>}}/>
+            <Route path="/login" component={HomePageComponent} />
+          </Switch>
+        </BrowserRouter>
       </div>
     );
   }
